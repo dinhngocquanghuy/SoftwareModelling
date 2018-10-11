@@ -74,4 +74,28 @@ users.register = (req, res) => {
     }
 }
 
+users.edit = (req, res) => {
+    const body = req.body;
+    console.log("users.edit" + body);
+    var user = {
+        username: body.username,
+        password: body.password,
+        fullname: body.fullname,
+        email: body.email,
+        address: body.address,
+        phone: body.phone,
+        role: body.role,
+    }
+    user_db.edit(user).then(resolve => {
+
+        res.writeHead(200, { 'Content-Type': 'text/json' });
+        const body = { "username": user.username, "reason": resolve };
+        res.end(JSON.stringify(body));
+    }).catch(reject => {
+        res.writeHead(400, { 'Content-Type': 'text/json' });
+        const body = { "username": user.username, "reason": reject };
+        res.end(JSON.stringify(body));
+    })
+}
+
 module.exports = users;
