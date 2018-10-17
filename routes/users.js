@@ -5,21 +5,27 @@ const verifyAccessToken = require('../services/ticket_services').verifyAccessTok
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
+    res.render('user', { title: 'Express' });
 });
 
-router.post("/login/", (req, res) => {
+router.get('/register', function(req, res, next) {
+    res.render('user_register', { title: 'Express' });
+});
+router.get('/login', function(req, res, next) {
+    res.render('user_login', { title: 'Express' });
+});
+
+router.post("/api/login/", (req, res) => {
     user_services.login(req, res);
 });
 
-router.post("/register/", (req, res) => {
+router.post("/api/register/", (req, res) => {
     user_services.register(req, res);
 });
 
-router.post('/edit', verifyAccessToken, (req, res) => {
+router.post('/api/edit', verifyAccessToken, (req, res) => {
     user_services.edit(req, res);
 });
-
 
 
 module.exports = router;

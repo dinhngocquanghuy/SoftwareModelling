@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  script(src='/javascripts/user.js')
+  #content
+    div
+      span.background
+      .section
+        h3
+          span Sign In
+        div
+          p Please enter username and password to login.
+          table
+            tbody
+              tr
+                td Username*
+                td
+                  input#txtusername(type='text')
+              tr
+                td Password*
+                td
+                  input#txtpassword(type='password')
+          input#policy(type='checkbox')
+          |             I agree to the Terms of Use and Privacy Policy
+          p
+          p
+            button.submit(onclick='login()')
+          p * = Required Field
+  #footer
+    p
+        | Copyright © 
+        a(href='#') Domain Name
+        |  - All Rights Reserved | Template By 
+        a(target='_blank', href='http://www.freewebsitetemplates.com/') FreeWebsiteTemplates.com
+

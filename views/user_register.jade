@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  script(src='/javascripts/user.js')
+  #content
+    div
+      span.background
+      .section
+        h3
+          span Sign Up
+        div
+          p Please fill in this form to create an account.
+          form
+            table
+              tbody
+                tr
+                  td Username*
+                  td
+                    input#txtusername(type='text')
+                tr
+                  td Full Name*
+                  td
+                    input#txtfullname(type='text')
+                tr
+                  td Email
+                  td
+                    input#txtemail(type='text')
+                tr
+                  td Password*
+                  td
+                    input#txtpassword(type='password')
+                tr
+                  td Confirm Password*
+                  td
+                    input#txtconfirmpassword(type='password')
+                tr
+                  td Address
+                  td
+                    input#txtaddress(type='text', requied)
+                tr
+                  td Phone
+                  td
+                    input#txtphone(type='text')
+                tr
+                  td  Role
+                  td
+                    select#role
+                      option(value='buyer') Buyer
+                      option(value='seller') Seller
+            input#policy(type='checkbox')
+            |             I agree to the Terms of Use and Privacy Policy
+            p
+            p
+              button.submit(onclick='register()')
+            p * = Required Field
+  #footer
+    p
+        | Copyright © 
+        a(href='#') Domain Name
+        |  - All Rights Reserved | Template By 
+        a(target='_blank', href='http://www.freewebsitetemplates.com/') FreeWebsiteTemplates.com
+
