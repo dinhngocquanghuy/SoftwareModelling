@@ -32,7 +32,7 @@ html
               li
                 a#username(href='/users/user') username
               li
-                a#logout(href='/users/logout') logout
+                a#logout(onclick='logout()') logout
             ul.secondary
               li
                 a(href='themes.html') Themes
@@ -71,4 +71,8 @@ html
       document.getElementById("register").style.visibility = "visible";
       document.getElementById("login").style.display = "block";
       document.getElementById("login").style.visibility = "visible";
+      }
+      function logout() {
+      localStorage.removeItem("user");
+      window.location.href = "/";
       }

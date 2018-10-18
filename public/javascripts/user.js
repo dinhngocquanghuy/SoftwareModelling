@@ -7,6 +7,10 @@ function register() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
             console.log(json);
+            alert(json.reason);
+            window.location.href = "/users/login";
+        } else {
+            document.getElementById('error').innerHTML = "Invalid input";
         }
     };
     var username = document.getElementById('txtusername').value;
@@ -39,6 +43,9 @@ function login() {
             var json = JSON.parse(xhr.responseText);
             localStorage.setItem("user", JSON.stringify(json));
             console.log(json);
+            window.location.href = "/";
+        } else {
+            document.getElementById('error').innerHTML = "Invalid input";
         }
     };
     var username = document.getElementById('txtusername').value;

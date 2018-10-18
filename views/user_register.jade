@@ -16,11 +16,11 @@ block content
                 tr
                   td Username*
                   td
-                    input#txtusername(type='text')
+                    input#txtusername(type='text', required='')
                 tr
                   td Full Name*
                   td
-                    input#txtfullname(type='text')
+                    input#txtfullname(type='text', required='')
                 tr
                   td Email
                   td
@@ -28,15 +28,15 @@ block content
                 tr
                   td Password*
                   td
-                    input#txtpassword(type='password')
+                    input#txtpassword(type='password', required='')
                 tr
                   td Confirm Password*
                   td
-                    input#txtconfirmpassword(type='password')
+                    input#txtconfirmpassword(type='password', required='')
                 tr
                   td Address
                   td
-                    input#txtaddress(type='text', requied)
+                    input#txtaddress(type='text')
                 tr
                   td Phone
                   td
@@ -50,9 +50,10 @@ block content
             input#policy(type='checkbox')
             |             I agree to the Terms of Use and Privacy Policy
             p
-            p
-              button.submit(onclick='register()')
-            p * = Required Field
+          p#error(style='color:Red;')
+          p
+            button.submit(onclick='register()') Submit
+          p * = Required Field
   #footer
     p
         | Copyright © 

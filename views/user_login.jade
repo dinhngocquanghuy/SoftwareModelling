@@ -10,21 +10,23 @@ block content
           span Sign In
         div
           p Please enter username and password to login.
-          table
-            tbody
-              tr
-                td Username*
-                td
-                  input#txtusername(type='text')
-              tr
-                td Password*
-                td
-                  input#txtpassword(type='password')
-          input#policy(type='checkbox')
-          |             I agree to the Terms of Use and Privacy Policy
+          form
+            table
+              tbody
+                tr
+                  td Username*
+                  td
+                    input#txtusername(type='text', required='')
+                tr
+                  td Password*
+                  td
+                    input#txtpassword(type='password', required='')
+            input#policy(type='checkbox')
+            |             I agree to the Terms of Use and Privacy Policy
+            p
+          p#error(style='color:Red;')
           p
-          p
-            button.submit(onclick='login()')
+              button(onclick='login()') Submit
           p * = Required Field
   #footer
     p
