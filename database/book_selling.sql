@@ -7,6 +7,10 @@
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
+CREATE SCHEMA `book_selling` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+
+USE `book_selling`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
