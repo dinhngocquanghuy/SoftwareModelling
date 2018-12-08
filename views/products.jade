@@ -1,0 +1,112 @@
+doctype html
+html
+	head
+		title RESULTS
+		meta(name='viewport', content='width=device-width, initial-scale=1', charset='utf-8')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+	body
+		.container
+			form(action='/products/show', method='get')
+				h4(style='text-align:left') DANH SACH CAC SAN PHAM
+				.col-sm-12.col-md-12
+					.panel.panel-success
+						table#tbProductsList.table.table-hover
+							thead
+								tr
+									th(style='background-color:lavender;') ID Product
+									th(style='background-color:lavender;') ID Seller
+									th(style='background-color:lavender;') Name
+									th(style='background-color:lavender;') Price
+									th(style='background-color:lavender;') Description
+									th(style='background-color:lavender;') Image Url
+									th(style='background-color:lavender;') Status
+									th(style='background-color:lavender;') Type
+							tbody
+							each n in products_list
+								tr
+									td #{n.product_id}
+									td #{n.seller_id}
+									td #{n.name}
+									td #{n.price}
+									td #{n.description}
+									td #{n.image_url}
+									td #{n.status}
+									td #{n.type}
+				h4(style='text-align:left') NHAP TEN SAN PHAM CAN TIM KIEM
+					.col-sm-12.col-md-12
+						.input-group
+							input#search.form-control(type='text', placeholder='Search', name='byname', value='')
+							.input-group-btn
+								button#btnSearch.btn.btn-default(type='button', onclick='searchProducts("' + '")')
+									i.glyphicon.glyphicon-search
+				br
+				br
+				h4(style='text-align:left') DANH SACH KET QUA
+				.col-sm-12.col-md-12
+					.panel.panel-success
+						table.table.table-hover
+							thead
+								tr
+									th(style='background-color:lavender;') ID Product
+									th(style='background-color:lavender;') ID Seller
+									th(style='background-color:lavender;') Name
+									th(style='background-color:lavender;') Price
+									th(style='background-color:lavender;') Description
+									th(style='background-color:lavender;') Image Url
+									th(style='background-color:lavender;') Status
+									th(style='background-color:lavender;') Type
+							tbody#results_of_searching
+	script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+	script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js')
+	script(src='https://unpkg.com/axios/dist/axios.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+	script.
+		function searchProducts(){
+			var table = document.getElementById("tbProductsList");
+			var count = $('#tbProductsList tr').length;
+			var name_of_product = document.getElementById('search').value;
+			var results = [];
+			for (var i=1; i<count; i++)
+			{
+				var name = table.rows[i].cells[2].innerHTML;
+				if (name.toLocaleLowerCase().includes(name_of_product.toLocaleLowerCase()))
+				{
+					var product = {
+						product_id: table.rows[i].cells[0].innerHTML,
+						seller_id: table.rows[i].cells[1].innerHTML,
+						name: table.rows[i].cells[2].innerHTML,
+						price: table.rows[i].cells[3].innerHTML,
+						decription: table.rows[i].cells[4].innerHTML,
+						image_url: table.rows[i].cells[5].innerHTML,
+						status: table.rows[i].cells[6].innerHTML,
+						type: table.rows[i].cells[7].innerHTML
+					};
+					results.push(product);
+				}
+			}
+			console.log("So phan tu trong mang ket qua:" + results.length);
+
+			var table_results = document.getElementById('results_of_searching');
+			var jade = "<tr>";
+			for (var i=0; i<results.length; i++){
+				var obj = results[i];
+				var ijade = "<td>" + obj.product_id.toString() + "</td><td>"
+								+ obj.seller_id.toString() + "</td><td>"
+								+ obj.name.toString() + "</td><td>"
+								+ obj.price.toString() + "</td><td>"
+								+ obj.description.toString() + "</td><td>www.abc.com</td><td>"
+								+ obj.status.toString() + "</td><td>"
+								+ obj.type.toString() + "</td></tr>";
+				jade += ijade;
+			}
+			table_results.append(jade);
+			//- table_results.append(obj.seller_id);
+			//- table_results.append(obj.name);
+			//- table_results.append(obj.price);
+			//- table_results.append(obj.description);
+			//- table_results.append(www.abc.com);
+			//- table_results.append(obj.status);
+			//- table_results.append(obj.type);
+			console.log(table_results);
+		}

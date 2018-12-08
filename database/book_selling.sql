@@ -221,6 +221,10 @@ ALTER TABLE `orders`
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`,`seller_id`),
   ADD KEY `seller_id` (`seller_id`);
+  
+  ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`,`seller_id`);
+
 
 --
 -- Indexes for table `shipping_method`
