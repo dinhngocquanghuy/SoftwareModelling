@@ -44,7 +44,7 @@ html
 				h4(style='text-align:left') DANH SACH KET QUA
 				.col-sm-12.col-md-12
 					.panel.panel-success
-						table.table.table-hover
+						table#results_of_searching.table.table-hover
 							thead
 								tr
 									th(style='background-color:lavender;') ID Product
@@ -55,7 +55,7 @@ html
 									th(style='background-color:lavender;') Image Url
 									th(style='background-color:lavender;') Status
 									th(style='background-color:lavender;') Type
-							tbody#results_of_searching
+							tbody
 	script(src='https://code.jquery.com/jquery-3.3.1.min.js')
 	script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
 	script(src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js')
@@ -88,25 +88,25 @@ html
 			console.log("So phan tu trong mang ket qua:" + results.length);
 
 			var table_results = document.getElementById('results_of_searching');
-			var jade = "<tr>";
 			for (var i=0; i<results.length; i++){
 				var obj = results[i];
-				var ijade = "<td>" + obj.product_id.toString() + "</td><td>"
-								+ obj.seller_id.toString() + "</td><td>"
-								+ obj.name.toString() + "</td><td>"
-								+ obj.price.toString() + "</td><td>"
-								+ obj.description.toString() + "</td><td>www.abc.com</td><td>"
-								+ obj.status.toString() + "</td><td>"
-								+ obj.type.toString() + "</td></tr>";
-				jade += ijade;
+				var newRow = table_results.insertRow(i + 1);
+				var cell0 = newRow.insertCell(0);
+				var cell1 = newRow.insertCell(1);
+				var cell2 = newRow.insertCell(2);
+				var cell3 = newRow.insertCell(3);
+				var cell4 = newRow.insertCell(4);
+				var cell5 = newRow.insertCell(5);
+				var cell6 = newRow.insertCell(6);
+				var cell7 = newRow.insertCell(7);
+				cell0.innerHTML = obj.product_id;
+				cell1.innerHTML = obj.seller_id;
+				cell2.innerHTML = obj.name;
+				cell3.innerHTML = obj.price;
+				cell4.innerHTML = obj.description;
+				cell5.innerHTML = obj.image_url;
+				cell6.innerHTML = obj.status;
+				cell7.innerHTML = obj.type;
 			}
-			table_results.append(jade);
-			//- table_results.append(obj.seller_id);
-			//- table_results.append(obj.name);
-			//- table_results.append(obj.price);
-			//- table_results.append(obj.description);
-			//- table_results.append(www.abc.com);
-			//- table_results.append(obj.status);
-			//- table_results.append(obj.type);
 			console.log(table_results);
 		}
