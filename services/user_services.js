@@ -11,19 +11,21 @@ users.login = (req, res) => {
   console.log("Post login Entry: " + body);
   const username = body.username;
   const password = body.password;
+  const role = body.role;
 
   const accessToken = ticket.generateAccessToken(users);
   const refreshToken = ticket.generateRefreshToken();
   user_db
-    .authenticate(username, password)
+    .authenticate(username, password, role)
     .then(user => {
       console.log("user_db.authenticate: " + user);
       ticket.generateRefreshToken();
       ticket
-        .updateRefreshToken(username, refreshToken)
+        .updateRefreshToken(user.id, refreshToken)
         .then(() => {
           res.writeHead(200, { "Content-Type": "text/json" });
           const body = {
+            id: user.id,
             username: username,
             fullname: user.fullname,
             email: user.email,
@@ -54,6 +56,7 @@ users.login = (req, res) => {
 
 users.register = (req, res) => {
   const body = req.body;
+  console.log("users.register");
   console.log(body);
   var user = {
     username: body.username,
@@ -65,7 +68,8 @@ users.register = (req, res) => {
     role: body.role
   };
 
-  if (user.username.trim() != "" && user.password.trim()) {
+  if (user.username.trim() != "") {
+    console.log("users.register 11");
     user_db
       .add_new(user)
       .then(resolve => {

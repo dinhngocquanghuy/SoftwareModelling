@@ -50,10 +50,12 @@ function login() {
   };
   var username = document.getElementById("txtusername").value;
   var password = document.getElementById("txtpassword").value;
+  var role = document.getElementById("role").selectedIndex + 1;
 
   var data = JSON.stringify({
     username: username,
-    password: password
+    password: password,
+    role: role
   });
   xhr.send(data);
 }
