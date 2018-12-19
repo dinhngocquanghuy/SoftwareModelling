@@ -9,6 +9,7 @@ users.use(bodyParser.json());
 users.login = (req, res) => {
   const body = req.body;
   console.log("Post login Entry: " + body);
+  console.log(body);
   const username = body.username;
   const password = body.password;
   const role = body.role;
@@ -18,10 +19,10 @@ users.login = (req, res) => {
   user_db
     .authenticate(username, password, role)
     .then(user => {
-      console.log("user_db.authenticate: " + user);
+      console.log("user_db.authenticate: " + user + " " + role );
       ticket.generateRefreshToken();
       ticket
-        .updateRefreshToken(user.id, refreshToken)
+        .updateRefreshToken(user.id, refreshToken, role)
         .then(() => {
           res.writeHead(200, { "Content-Type": "text/json" });
           const body = {

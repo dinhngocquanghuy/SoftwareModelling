@@ -49,6 +49,6 @@ exports.generateRefreshToken = () => {
     return rndToken.generate(SIZE);
 }
 
-exports.updateRefreshToken = (userId, rfToken) => {
-    return ticket_db.updateRefreshToken(userId, rfToken);
+exports.updateRefreshToken = (userId, rfToken, role) => {
+    return ticket_db.updateRefreshToken(userId, rfToken, role);
 }

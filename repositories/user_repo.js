@@ -33,7 +33,7 @@ exports.authenticate = (username, password, role) => new Promise((resolve, rejec
         role_db = "seller";
         
 
-    console.log("users_model:authenticate: Entry " + username + " " + password);
+    console.log("users_model:authenticate: Entry " + username + " " + password + " " + role);
     find_user(username).then(user => {
         console.log("users_model:authenticate: " + user[0].username + " " + user[0].password);
         if (Object.keys(user).length == 0) {

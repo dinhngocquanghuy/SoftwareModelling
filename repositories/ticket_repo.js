@@ -7,7 +7,7 @@ var id = "buyer_id"
 exports.updateRefreshToken = (userId, rfToken, _role) => {
     return new Promise((resolve, reject) => {
 
-
+        console.log("updateRefreshToken " + _role)
         if(_role == 1)
             {
                 role = "ticket_buyer";
